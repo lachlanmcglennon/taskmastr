@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>App Login</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <script type="module" src="js/script.js"></script>
+</head>
+<body>
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <div class="taskbar-left">
+      <div class="taskbar-title">Task Manager Pro</div>
+      <button class="taskbar-btn" id="dashboardBtn"><i class="fas fa-home"></i> Dashboard</button>
+      <button class="taskbar-btn" id="tasksBtn"><i class="fas fa-list"></i> Tasks</button>
+      <button class="taskbar-btn" id="chartsBtn"><i class="fas fa-chart-bar"></i> Charts</button>
+    </div>
+    <div class="taskbar-right">
+      
+      <button class="taskbar-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
+      <button class="taskbar-btn" id="profileBtn"><i class="fas fa-user-circle"></i> </button>
+      <button class="taskbar-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="main-content">
+    <!-- Blue Chat Sidebar -->
+    <div class="sidebar">
+      <div class="chat-container">
+        <div class="status-message">Chat window (placeholder)</div>
+      </div>
+    </div>
+
+    <!-- Main View Area -->
+    <div class="content-area">
+      <div class="main-view">
+        <div class="placeholder-content">
+
+          <i class="fas fa-sign-in-alt"></i>
+          <h2 id="authTitle">Login</h2>
+
+          <!-- Login Form -->
+          <form id="loginForm" class="profile-form">
+            <div class="form-group">
+              <label for="loginEmail">Email</label>
+              <input type="email" id="logEmail" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="logPassword" name="password" required />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Login</button>
+            </div>
+          </form>
+
+          <!-- Register Form (Initially Hidden) -->
+          <form id="registerForm" class="profile-form" style="display: none;">
+            <div class="form-group">
+              <label for="regName">Name</label>
+              <input type="text" id="regName" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="regEmail">Email</label>
+              <input type="email" id="regEmail" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="regPassword">Password</label>
+              <input type="password" id="regPassword" name="password" required />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Register</button>
+            </div>
+          </form>
+
+          <!-- Toggle Between Login/Register -->
+          <button id="toggleAuthBtn" class="submit-btn small-btn">Need an account? Register</button>
+
+          <p id="status" class="status-text"></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
