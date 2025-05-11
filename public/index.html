@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
   <script type="module" src="js/script.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
   <!-- Taskbar -->
@@ -27,13 +28,21 @@
 
   <!-- Main Layout -->
   <div class="main-content">
-    <!-- Blue Chat Sidebar -->
-    <div class="sidebar">
-      <div class="chat-container">
-        <div class="status-message">Chat window (placeholder)</div>
+    <div class="sidebar" id="chatContainer">
+    <div class="chat-container">
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search messages...">
+        <button id="searchButton">Search</button>
       </div>
+      <div id="chatMessages" class="messages"></div>
+      <form id="chatForm" class="input-area">
+        <input type="text" id="chatInput" placeholder="Type a message..." required />
+        <button type="submit" id="sendButton">Send</button>
+      </form>
     </div>
-
+  </div>
+    <div id="teamStatus" style="display: none;"></div>
+    
     <!-- Main View Area -->
     <div class="content-area">
       <div class="main-view">
@@ -42,48 +51,77 @@
           <i class="fas fa-sign-in-alt"></i>
           <h2 id="authTitle">Login</h2>
 
-          <!-- Login Form -->
-          <form id="loginForm" class="profile-form">
-            <div class="form-group">
-              <label for="loginEmail">Email</label>
-              <input type="email" id="logEmail" name="email" required />
-            </div>
-            <div class="form-group">
-              <label for="loginPassword">Password</label>
-              <input type="password" id="logPassword" name="password" required />
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="submit-btn">Login</button>
-            </div>
-          </form>
+          <!-- Auth Forms -->
+<div id="authForms">
+  <form id="loginForm" class="profile-form">
+    <div class="form-group">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="logEmail" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="logPassword" name="password" required />
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Login</button>
+    </div>
+  </form>
 
-          <!-- Register Form (Initially Hidden) -->
-          <form id="registerForm" class="profile-form" style="display: none;">
-            <div class="form-group">
-              <label for="regName">Name</label>
-              <input type="text" id="regName" name="name" required />
-            </div>
-            <div class="form-group">
-              <label for="regEmail">Email</label>
-              <input type="email" id="regEmail" name="email" required />
-            </div>
-            <div class="form-group">
-              <label for="regPassword">Password</label>
-              <input type="password" id="regPassword" name="password" required />
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="submit-btn">Register</button>
-            </div>
-          </form>
+  <form id="registerForm" class="profile-form" style="display: none;">
+    <div class="form-group">
+      <label for="regName">Name</label>
+      <input type="text" id="regName" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="regEmail">Email</label>
+      <input type="email" id="regEmail" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="regPassword">Password</label>
+      <input type="password" id="regPassword" name="password" required />
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Register</button>
+    </div>
+  </form>
+  <button id="toggleAuthBtn" class="submit-btn small-btn">Need an account? Register</button>
+</div>
 
-          <!-- Toggle Between Login/Register -->
-          <button id="toggleAuthBtn" class="submit-btn small-btn">Need an account? Register</button>
+<!-- Team Actions (hidden until login) -->
+<div id="teamForms" style="display: none;">
+  <h3>Team Options</h3>
+  <form id="createTeamForm" class="profile-form">
+    <div class="form-group">
+      <label for="teamName">Team Name</label>
+      <input type="text" id="teamName" name="teamName" required />
+    </div>
+    <div class="form-group">
+      
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Create Team</button>
+    </div>
+  </form>
 
-          <p id="status" class="status-text"></p>
+  <form id="joinTeamForm" class="profile-form">
+    <div class="form-group">
+      <label for="joinTeamId">Team ID</label>
+      <input type="text" id="joinTeamId" name="joinTeamId" required />
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Join Team</button>
+    </div>
+  </form>
+</div>
+
+
+<p id="status" class="status-text"></p>
 
         </div>
       </div>
     </div>
+  <!-- Chat Sidebar -->
+  
   </div>
 </body>
 </html>
